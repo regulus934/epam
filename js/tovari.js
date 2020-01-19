@@ -6,32 +6,37 @@ $(document).ready(() => {
     document.getElementById('update').disabled = true;
     let store = [{
             "name": "Вареники",
-            "price": "5",
+            "price": 1,
             "actions": "",
-            "count": "1"
+            "count": 1
         },
         {
             "name": "Арбузы",
-            "price": "4",
+            "price": 4,
             "actions": "",
-            "count": "1"
+            "count": 1
         },
         {
             "name": "Ананас",
-            "price": "6",
+            "price": 6,
             "actions": "",
-            "count": "1"
+            "count": 1
         }
     ];
-
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 1
+    })
 
     function GetListItem(arr) {
         let html;
         $(arr).each(function(key, item) {
+            console.log(item.price);
             html += `
              <tr>
                <td>${item.name} <span class="badge badge-dark">${item.count}</span></td>
-               <td>$ ${item.price}</td>
+               <td>${formatter.format(item.price)}</td>
                <td><button type="submit" class="btn btn-dark edit" data-edit="${key}">Edit</button>  <button type="submit" class="btn btn-dark delete" data-edit="${key}">Delete</button></td>
              </tr>
        `
@@ -76,9 +81,7 @@ $(document).ready(() => {
                 var jname = $('.add-name').val();
                 var jprice = $('.add-price').val();
                 var jcount = $('.add-count').val();
-                if (jname == "" || jprice == "" || jcount == "") {
-                    alert('Введите данные');
-                } else {
+                if (jname == "" || jprice == "" || jcount == "") {} else {
                     store[id].name = jname;
                     store[id].price = jprice;
                     store[id].count = jcount;
@@ -98,25 +101,6 @@ $(document).ready(() => {
             SetFunct();
             Clear();
         })
-    }
-
-    function reprice(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-
-    function AddItems() {
-        var jprice = $('.add-price').val();
-        var jname = $('.add-name').val();
-        var jcount = $('.add-count').val();
-        result = reprice(jprice);
-        store.push({
-            name: jname,
-            price: result,
-            count: jcount
-        });
-        GetListItem(store);
-        SetFunct();
-        Clear()
     }
 
     var sort_by = function(field, reverse, primer) {
@@ -140,12 +124,16 @@ $(document).ready(() => {
         var jname = $('.add-name').val();
         var jprice = $('.add-price').val();
         var jcount = $('.add-count').val();
-        if (jname == "" || jprice == "" || jname == "") {
-            alert('Введите данные');
-        } else {
-            e.preventDefault();
-            AddItems();
-        }
+        e.preventDefault();
+        store.push({
+            name: jname,
+            price: jprice,
+            count: jcount
+        });
+        GetListItem(store);
+        SetFunct();
+        Clear()
+
     });
     $('.sbutton').on('click', (e) => {
         e.preventDefault();
@@ -204,31 +192,4 @@ $(document).ready(() => {
         document.querySelector('.add-price').value = '';
         document.querySelector('.stext').value = '';
     }
-    $(document).ready(function() {
-        $(".validation").keydown(function(event) {
-            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 ||
-                (event.keyCode == 65 && event.ctrlKey === true) ||
-                (event.keyCode >= 35 && event.keyCode <= 39)) {
-                return;
-            } else {
-                if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
-                    event.preventDefault();
-                }
-            }
-        });
-    });
-
-    $(document).ready(function() {
-        $(".add-name").keydown(function(event) {
-            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 ||
-                (event.keyCode == 65 && event.ctrlKey === true) ||
-                (event.keyCode >= 35 && event.keyCode <= 39)) {
-                return;
-            } else {
-                if (event.keyCode == 32) {
-                    event.preventDefault();
-                }
-            }
-        });
-    });
 })
