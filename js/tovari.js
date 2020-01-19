@@ -89,7 +89,7 @@ $(document).ready(() => {
         else {
             store[id1].name = jname;
             store[id1].price = jprice;
-            store[id1].count = jcount;
+            store[id1].count = parseInt(jcount);
         }
         GetListItem(store);
         SetFunct();
