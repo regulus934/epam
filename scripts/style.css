@@ -1,0 +1,29 @@
+#content {
+     width: 153px;
+     height: 60px;
+     border: 2px solid white;
+     border-radius: 2px;
+     background-color: #323339;
+     font-family: 'Montserrat Regular';
+     font-size: 15px;
+     color: white;
+     line-height: 153%;
+}
+ a {
+     color:black;
+     text-decoration:none;
+}
+ a:link {
+     color:black;
+     text-decoration:underline;
+}
+ a:hover {
+     color:black;
+     text-decoration:none;
+}
+ a:visited {
+     color: black;
+}
+ a:active {
+     color:black;
+}

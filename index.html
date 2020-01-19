@@ -1,0 +1,74 @@
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="scripts/style.css">
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <script src="js/tovari.js"></script>
+   </head>
+   <body>
+      <div class="mx-auto" style="width: 1000px;">
+         <br>
+         <form class="form-inline mx-auto">
+            <input class="form-control mr-sm-2 stext" type="text" placeholder="Поиск" aria-label="Search">
+            <button class="btn blue-gradient btn-rounded btn-sm my-0 sbutton" type="submit" id="content">Search</button>
+            <button type="submit" class="btn btn-primary addnew" id="content">Add new</button>
+         </form>
+         <table class="table table-hover" id="Table">
+            <thead>
+               <tr>
+                  <th scope="col" width=40%>Name  <a href="#" id="sort-name" class="sortname">▽</a></th>
+                  <th scope="col" width=40%>Price <a href="#" id="sort-price" class="sortprice">▽</a></th>
+                  <th scope="col" width=20%>Actions</th>
+               </tr>
+            </thead>
+            <tbody>
+            </tbody>
+         </table>
+         <table class="table">
+            <thead>
+               <tr>
+                  <th>Name</th>
+                  <th>Count</th>
+                  <th>Price</th>
+                  <th></th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>
+                     <form>
+                        <div class="row">
+                           <div class="col">
+                              <input type="text" class="form-control add-name" autofocus required maxlength="15" placeholder="Имя">
+                           </div>
+                        </div>
+                  </td>
+                  <td>
+                  <div class="row">
+                  <div class="col">
+                  <input type="text" class="form-control add-count validation" required placeholder="#">
+                  </div>
+                  </div>
+                  </td>
+                  <td>
+                  <div class="row">
+                  <div class="col">
+                  <input type="text" class="form-control add-price validation" required placeholder="#">
+                  </div>
+                  </div>
+                  </td>
+                  <td>
+                  <div class="row">
+                  <div class="col">
+                  <button type="submit" class="btn btn-dark add-submit" id="add">Add</button>
+                  <button class="btn btn-dark ed-submit" id="update" type="submit">Update</button>
+                  </div>
+                  </div></form>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </body>
+</html>
