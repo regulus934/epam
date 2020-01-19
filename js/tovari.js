@@ -58,11 +58,14 @@ $(document).ready(() => {
             e.preventDefault();
             let DelRow = document.querySelectorAll('.delete');
             let id = parseInt(e.target.dataset.edit);
-            var confirm = alert("Вы уверены что хотите удалить товар " + store[id].name + " ?")
-            if (DelRow.length == 1) {
+            var confirmq = confirm("Вы уверены что хотите удалить товар " + store[id].name + " ?")
+            if (confirmq==true) {
+              if (DelRow.length == 1) {
                 document.getElementById('Table').deleteRow(1);
             }
             store.splice(id, 1);
+          }
+
             GetListItem(store);
             SetFunct();
             Clear()
