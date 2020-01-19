@@ -2,8 +2,8 @@ $(document).ready(() => {
     var butt = 1,
         butt1 = 1,
         price = 1,
-        nameb = 1;
-    document.getElementById('update').disabled = true;
+        nameb = 1,
+        id1;
     let store = [{
             "name": "Вареники",
             "price": 1,
@@ -32,7 +32,6 @@ $(document).ready(() => {
     function GetListItem(arr) {
         let html;
         $(arr).each(function(key, item) {
-            console.log(item.price);
             html += `
              <tr>
                <td>${item.name} <span class="badge badge-dark">${item.count}</span></td>
@@ -67,36 +66,68 @@ $(document).ready(() => {
             GetListItem(store);
             SetFunct();
             Clear()
-
         })
     }
-
     function Edit() {
         $('.edit').on('click', (e) => {
             e.preventDefault();
-            document.getElementById('update').disabled = false;
-            let id = parseInt(e.target.dataset.edit);
-            $('.ed-submit').on('click', (e) => {
-                e.preventDefault();
-                var jname = $('.add-name').val();
-                var jprice = $('.add-price').val();
-                var jcount = $('.add-count').val();
-                if (jname == "" || jprice == "" || jcount == "") {} else {
-                    store[id].name = jname;
-                    store[id].price = jprice;
-                    store[id].count = jcount;
-                }
-                GetListItem(store);
-                SetFunct();
-                Clear();
-            })
+            $('#btn').text("Update");
+            id1 = parseInt(e.target.dataset.edit);
+            $('.add-name').val(store[id1].name);
+            $('.add-price').val(store[id1].price);
+            $('.add-count').val(store[id1].count);
         })
     }
 
+    function Update(){
+        var jname = $('.add-name').val();
+        var jprice = $('.add-price').val();
+        var jcount = $('.add-count').val();
+        if (jname == "" || jprice == "" || jcount == "") {
+          alert("Введите данные")
+        }
+        else {
+            store[id1].name = jname;
+            store[id1].price = jprice;
+            store[id1].count = jcount;
+        }
+        GetListItem(store);
+        SetFunct();
+        Clear();
+    }
+
+    function Insert(){
+      var jname = $('.add-name').val();
+      var jprice = $('.add-price').val();
+      var jcount = $('.add-count').val();
+      var check = false;
+      for (let i = 0; i < store.length; i++) {
+      if(store[i].name==jname && store[i].price==jprice)
+        {
+          store[i].count+=parseInt(jcount);
+          console.log("asd");
+          check = true;
+        }
+      }
+      if (jname == "" || jprice == "" || jcount == ""){
+              alert('Введите данные');
+          }
+      if (check==false){
+          store.push({
+          name: jname,
+          price: jprice,
+          count: parseInt(jcount)
+          });
+        }
+          GetListItem(store);
+          SetFunct();
+          Clear();
+        }
+
     function AddNew() {
         $('.addnew').on('click', (e) => {
+            $('#btn').text("Add");
             e.preventDefault();
-            document.getElementById('update').disabled = true;
             GetListItem(store);
             SetFunct();
             Clear();
@@ -120,20 +151,12 @@ $(document).ready(() => {
         }
     }
 
-    $('.add-submit').on('click', (e) => {
-        var jname = $('.add-name').val();
-        var jprice = $('.add-price').val();
-        var jcount = $('.add-count').val();
+    $('#btn').on('click', (e) => {
         e.preventDefault();
-        store.push({
-            name: jname,
-            price: jprice,
-            count: jcount
-        });
-        GetListItem(store);
-        SetFunct();
-        Clear()
-
+        if($('#btn').text()=="Update"){
+          Update();
+        }
+        else Insert();
     });
     $('.sbutton').on('click', (e) => {
         e.preventDefault();
@@ -164,6 +187,7 @@ $(document).ready(() => {
             document.getElementById('sort-name').innerHTML = "▽";
         }
         GetListItem(store);
+        SetFunct();
     })
     $('.sortprice').on('click', (e) => {
         e.preventDefault();
@@ -184,6 +208,7 @@ $(document).ready(() => {
             document.getElementById('sort-price').innerHTML = "▽";
         }
         GetListItem(store);
+        SetFunct();
     });
 
     function Clear() {
