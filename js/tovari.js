@@ -109,10 +109,10 @@ $(document).ready(() => {
           check = true;
         }
       }
-      if (jname == "" || jprice == "" || jcount == ""){
+      if (jname == "" || jprice == "" || jcount == "" || jcount == 0 || jprice == 0 ){
               alert('Введите данные');
           }
-      if (check==false){
+      else if (check==false){
           store.push({
           name: jname,
           price: jprice,

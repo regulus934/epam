@@ -48,14 +48,14 @@
                   <td>
                   <div class="row">
                   <div class="col">
-                  <input type="number" class="form-control add-count validation" required placeholder="#">
+                  <input type="number" class="form-control add-count validation" oninput="this.value = this.value.replace(/\D/g, '')" required placeholder="#">
                   </div>
                   </div>
                   </td>
                   <td>
                   <div class="row">
                   <div class="col">
-                  <input type="number" class="form-control add-price validation" required placeholder="#">
+                  <input type="number" class="form-control add-price validation" oninput="this.value = this.value.replace(/\D/g, '')" required placeholder="#">
                   </div>
                   </div>
                   </td>
